@@ -1,0 +1,53 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# IPython
+profile_default/
+ipython_config.py
+
+# VS Code
+.vscode/
+
+# Data (raw and processed) - large files not committed
+data/
+*.csv
+
+# Outputs and generated result files
+outputs/
+
+# Pytest/mypy/cache
+.pytest_cache/
+.mypy_cache/
+.coverage
+.cache/
+pip-wheel-metadata/
+*.egg-info/
+
+# Distribution / packaging
+build/
+dist/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Env files
+.env
+.env.*
+
+# Logs
+*.log
+
+outputs/demand_predictions.csv
+outputs/monitoring_metrics.csv
