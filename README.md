@@ -97,17 +97,17 @@ Open `notebooks/AI_Dynamic_Tariff_Workflow.ipynb` in Jupyter and run all cells. 
 
 | Agent | Metric | Description |
 |-------|--------|-------------|
-| Demand Prediction | RMSE, MAE, R² | Model accuracy on 20% holdout test set |
-| Tariff Pricing | Revenue Gain % | Improvement over fixed Rs 15/kWh baseline |
-| Tariff Pricing | Off-Peak Uplift | Session increase in discount zone |
-| Monitoring | Wait Time Reduction | Queue proxy reduction in surge periods |
+| Demand Prediction | RMSE, MAE, R² | Model accuracy evaluated strictly on a temporally isolated 20% holdout test set |
+| Tariff Pricing | Revenue Gain % | Improvement over fixed Rs 15/kWh baseline (evaluated on ACN) |
+| Tariff Pricing | Off-Peak Uplift | Session increase in discount zone (evaluated on UrbanEV test set) |
+| Monitoring | Wait Time Reduction | Simulated queue proxy reduction in surge periods using assumed price elasticity |
 | Monitoring | Pricing Efficiency | Revenue per kWh delivered over time |
 
-## Assumptions
+## Assumptions & Limitations
 
-- **Currency:** All monetary values are in Indian Rupees (Rs). The ACN data is from USA and UrbanEV from China — the Rs 15/kWh base tariff and Rs 6/kWh grid cost are assumed values to simulate an Indian EV charging market scenario as specified in the problem statement.
-- **Queue proxy:** Waiting time is estimated via occupancy exceeding 80% of charger capacity, not from actual queue data.
-- **Demand elasticity:** Customer response is inferred from volume differences across pricing zones, not from controlled experiments.
+- **Currency Integration:** All monetary values are simulated in Indian Rupees (Rs). Because the ACN data is from the USA and UrbanEV is from China, a Rs 15/kWh base tariff and Rs 6/kWh grid cost are assumed to simulate the Indian EV charging market scenario specified in the problem statement.
+- **Localized Tariff Mapping:** Because ACN lacks real-time station utilization, ACN sessions receive dynamic tariffs based on a localized utilization proxy derived from ACN's own historical hourly volume, ensuring pricing accurately reflects site-specific workplace constraints rather than foreign urban demand curves.
+- **Queue Proxy & Demand Elasticity (Causality):** Because historical users did not experience our dynamic prices, causal claims are avoided. Waiting time reductions and customer response rates are mathematically simulated using a standard Price Elasticity of Demand (PED) assumption of -0.30 (a 10% price increase yields a 3% demand drop).
 
 ## Requirements
 
@@ -117,3 +117,4 @@ Open `notebooks/AI_Dynamic_Tariff_Workflow.ipynb` in Jupyter and run all cells. 
 - matplotlib
 - openpyxl
 - scikit-learn
+- xgboost
